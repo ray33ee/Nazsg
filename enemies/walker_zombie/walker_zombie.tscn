@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://enemies/walker_zombie/creature-sheet.png" type="Texture" id=1]
+[ext_resource path="res://lib/entity/ai/AI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://enemies/walker_zombie/walker_idle_state.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemies/walker_zombie/walker_roam_state.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemies/walker_zombie/walker_zombie.gd" type="Script" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 24, 24 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 72, 0, 24, 24 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[node name="walker_zombie" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 4
+mode = 2
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+playing = true
+
+[node name="AI" parent="." instance=ExtResource( 2 )]
+
+[node name="walker_idle_state" parent="AI" instance=ExtResource( 3 )]
+
+[node name="walker_roam_state" parent="AI" instance=ExtResource( 4 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )

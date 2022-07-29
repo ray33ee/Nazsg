@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://lib/player/directional_movement/directional_movement.gd" type="Script" id=1]
+
+[node name="directional_movement" type="Node2D"]
+script = ExtResource( 1 )

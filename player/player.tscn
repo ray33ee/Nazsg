@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://player/player.gd" type="Script" id=1]
+[ext_resource path="res://player/medievalEnvironment_21.png" type="Texture" id=2]
+[ext_resource path="res://lib/player/directional_movement/directional_movement.tscn" type="PackedScene" id=3]
+[ext_resource path="res://lib/entity/damager/damager.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.0312
+
+[node name="player" type="RigidBody2D"]
+collision_mask = 2
+mode = 2
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.2, 0.2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="directional_movement" parent="." instance=ExtResource( 3 )]
+
+[node name="damager" parent="." instance=ExtResource( 4 )]
+default_damage = 100
+
+[node name="Area2D" type="Area2D" parent="damager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damager/Area2D"]
+shape = SubResource( 2 )
