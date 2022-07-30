@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://enemies/walker_zombie/walker_roam_state.gd" type="Script" id=1]
+[ext_resource path="res://enemies/walker_zombie/walker_persue_state.gd" type="Script" id=1]
 
 [node name="walker_roam_state" type="Node2D"]
 script = ExtResource( 1 )
